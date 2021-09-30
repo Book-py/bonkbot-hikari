@@ -3,6 +3,7 @@ from pathlib import Path
 
 import tanjun
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from hikari_testing.bot.db import Database
 from pytz import utc
 import lavasnek_rs
 
@@ -13,6 +14,7 @@ class Client(tanjun.Client):
     __slots__ = tanjun.Client.__slots__ + (
         "scheduler",
         "lavalink",
+        "db",
     )
 
     def __init__(self: _ClientT, *args: t.Any, **kwargs: t.Any) -> None:
@@ -20,6 +22,8 @@ class Client(tanjun.Client):
         self.scheduler = AsyncIOScheduler()
         self.scheduler.configure(timezone=utc)
         self.lavalink: lavasnek_rs.Lavalink = None
+
+        self.db = Database(self.scheduler)
 
     def load_modules(self: _ClientT) -> _ClientT:
         return super().load_modules(
