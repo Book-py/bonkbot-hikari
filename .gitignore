@@ -4,6 +4,7 @@ secrets/
 plan.md
 test.py
 hikari_testing/token.0
+.vscode
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
