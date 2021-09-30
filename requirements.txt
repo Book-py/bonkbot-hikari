@@ -1,0 +1,5 @@
+hikari[speedups]==2.0.0.dev102
+git+https://github.com/FasterSpeeding/Tanjun.git
+uvloop>=0.15.2
+apscheduler==3.7.0
+lavasnek_rs
