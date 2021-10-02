@@ -5,6 +5,7 @@ plan.md
 test.py
 hikari_testing/token.0
 .vscode
+data/db.database.db3
 
 ### Python ###
 # Byte-compiled / optimized / DLL files

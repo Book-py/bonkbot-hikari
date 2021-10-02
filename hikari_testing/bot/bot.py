@@ -5,6 +5,7 @@ import typing as t
 from pathlib import Path
 
 import hikari
+import sake
 from hikari_testing import STDOUT_CHANNEL_ID, TEST_GUILD_ID, __version__
 
 from .client import Client
@@ -47,6 +48,11 @@ class Bot(hikari.GatewayBot):
         )
 
     async def on_starting(self: _BotT, event: hikari.StartingEvent) -> None:
+        # src/redis-server
+        cache = sake.redis.RedisCache(self, self, address="redis://127.0.0.1")
+        await cache.open()
+        logging.info("Connected to Redis server")
+
         await self.client.db.connect()
         logging.info("Connected to the database")
 
